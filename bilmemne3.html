@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doğum Günü Uygulaması</title>
+    <style>
+        /* Genel stil */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ff6347;
+            font-size: 2em;
+            margin-top: 50px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        button:hover {
+            background-color: #ff4500;
+        }
+
+        /* Pasta ve Konfeti Sayfası */
+        .pasta {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Arka planda şarkı çalması */
+        .audio-player {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ana Sayfa -->
+    <div id="homePage">
+        <h1>Oo kimler gelmiş kimler, hoşgeldiniz!</h1>
+        <p>Kısa keser misin canım kardeşim?</p>
+        <button onclick="goToPastaPage()">Kısa Kes!</button>
+    </div>
+
+    <!-- Pasta Sayfası -->
+    <div id="pastaPage" style="display:none;">
+        <div class="audio-player">
+            <audio id="backgroundMusic" autoplay loop>
+                <source src="https://youtu.be/CX0URgmXsmQ?si=tMSJt_OFP_lu5gza" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <h1>Doğum Günün Kutlu Olsun!</h1>
+        <div class="pasta">
+            <img src="pasta_image.jpg" alt="Pasta" width="300">
+            <!-- Burada animasyonlu konfeti efektini JavaScript ile ekleyeceğiz -->
+            <div class="confetti"></div>
+        </div>
+        <button onclick="goToFinalPage()">Minik Ablalara Özel</button>
+    </div>
+
+    <!-- Final Sayfası -->
+    <div id="finalPage" style="display:none;">
+        <h1>Sn.Prof.Dr.Ayşenur Mustafa</h1>
+        <p>Hayatımın en sevimli ve aynı zamanda en sinirli, en minnak ve aynı zamanda en çalışkan (profesör olcak) insanının doğum günü kutlu olsun! Sen olmasan, ben kimle eğlenirdim yaağ :) Tabii arada bu tür şeyler yapmayı da ihmal etmem! Neyse duydum ki bu gün 1 yaş daha yaşlanırmışın, sağlık olsun (meslek olarak değil!) sen tanıdığım en tatlı ihtiyarsın. (Gönül isterdi bi pasta alıp üstüne 2 mum dikip getireyim ama çok uzaktasın ya) Doğum gününün kutlu olsun, Nice mutlu sağlıklı huzurlu AŞK dolu yıllara 🥳</p>
+    </div>
+
+    <script>
+        // Ana sayfadan pasta sayfasına geçiş
+        function goToPastaPage() {
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("pastaPage").style.display = "block";
+        }
+
+        // Pasta sayfasından final sayfasına geçiş
+        function goToFinalPage() {
+            document.getElementById("pastaPage").style.display = "none";
+            document.getElementById("finalPage").style.display = "block";
+        }
+
+        // Konfeti animasyonu için basit JavaScript efekti
+        window.addEventListener('load', function() {
+            const confetti = document.querySelector('.confetti');
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.position = 'absolute';
+                confettiPiece.style.width = '10px';
+                confettiPiece.style.height = '10px';
+                confettiPiece.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                confettiPiece.style.animation = `fall ${Math.random() * 5 + 3}s linear infinite`;
+                confetti.appendChild(confettiPiece);
+            }
+        });
+    </script>
+
+    <style>
+        /* Konfeti animasyonu */
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+
+</body>
+</html>
